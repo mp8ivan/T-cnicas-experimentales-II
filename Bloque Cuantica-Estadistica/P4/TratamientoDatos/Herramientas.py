@@ -1,8 +1,9 @@
 # Librerias
 import numpy as np
 import os
+import matplotlib.pyplot as plt
 
-#%% 
+#%% Trasladar data 
 """
 Txt to Data (TTD):
 Dado un path relativo a un documento de texto con datos guardados por columnas, asocia a cada columna una lista de datos.
@@ -19,14 +20,14 @@ def ComasToPuntos(path):
         try:
             """
             Apaño para la P4 Cuantica; Me quito las 3 primeras lineas
-            """
-            file.readline()
-            file.readline()
-            file.readline()
             
+            file.readline()
+            file.readline()
+            file.readline()
+            """
             data = file.read().replace(',', '.')
         except:
-            print("No ha podido leer a puntos. Revisa la indentacion")
+            print("No ha podido leer a puntos. Revisa el  path")
             return False
     with open(path, "w") as out_file:
         try:
@@ -38,13 +39,14 @@ def ComasToPuntos(path):
         return True
     
 def TTD(path):
+    
     file = open(path, "r")
     try:
         cifra = file.readline().replace("\n","") # Leo la primera linea para inizializar la categoria de datos
         cifra.replace(" ","") # Quito tambien los espacios 
         if cifra == "": # Documento vacio
             file.close()
-            print("Me has dado un documento vacio")
+            print("Me has dado un documento vacio // Primea linea vacia")
             return None
         n_datos = len(cifra.split("\t")) # El numero de columnas de datos
         data = [[]]*n_datos
@@ -129,7 +131,7 @@ def DTT (data):
             raise
     print("Listo, La información está almacenada en:\n{}".format(path))
     return
-#%%
+#%% Calculo de erroes
 """
 errA:
   Calcula el error tipo A de un conjunto de medidas  
@@ -138,3 +140,19 @@ def errA (data):
     media = np.sum(data)/len(data)
     error = np.sqrt(np.sum((data-media)**2)/((len(data)-1)*len(data)))
     return error
+
+#%% Graficas
+
+def BasicCanvas(title = "title", xlab = "xlabel", ylab = "ylabel"):
+    """
+    Basic Canvas devuelve un plot con la siguientes caracteristicas
+        1. Grid
+        2. Titulo
+        3. Labels ejes
+    """
+    fig, ax = plt.subplots()
+    ax.grid()
+    fig.suptitle(title)
+    ax.set_xlabel(xlab)
+    ax.set_ylabel(ylab)
+    return fig,ax
