@@ -2,7 +2,7 @@
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-
+import scipy as sci
 #%% Trasladar data 
 
 def ComasToPuntos(path):
@@ -44,6 +44,10 @@ Ya admite comas
 def TTD(path):
     
     file = open(path, "r")
+    # Para la P4 tecnicas II
+    file.readline()
+    file.readline()
+    file.readline()
     try:
         cifra = file.readline().replace("\n","") # Leo la primera linea para inizializar la categoria de datos
         cifra = cifra.replace(" ","") # Quito tambien los espacios
@@ -59,7 +63,6 @@ def TTD(path):
             aux = cifra.split("\t") # Lista de números
             for i in range(len(aux)): # Voy metiendo cada uno en su lista
                 try: 
-                    print(aux[i])
                     data[i] = data[i] + [(float(aux[i]))]
                 except: # No habia dato: Se levantará error de pasar "" a float.
                     pass # Seguimos y listo
@@ -76,7 +79,7 @@ def TTD(path):
     # Cuando he terminado, cierro el fichero y devuelvo data
     file.close()    
     return np.array(data, dtype = object)
-#%%
+#%%%
 """
 Data To Txt (DTT):
 Dado una matriz de datos, escribe cada fila en un txt distinto para poder copiarlo rapidamente a SciDavis.
@@ -147,6 +150,23 @@ def errA (data):
     error = np.sqrt(np.sum((data-media)**2)/((len(data)-1)*len(data)))
     return error
 
+#%% Otros tratamientos de datos
+
+def BuscadorMinimos(data, startIndex = 0, required_width = 0):
+
+    #------------------
+    yCortado = data[1][startIndex:]
+    xCortado = data[0][startIndex:]
+
+    indexMinimos = sci.signal.find_peaks(-yCortado,distance = 120,width = required_width)[0]
+    minimos = np.zeros(len(indexMinimos))
+    minDiff = np.zeros(len(indexMinimos)-1)
+    posMinimos = np.zeros(len(indexMinimos))
+    for i in range(len(indexMinimos)):
+        posMinimos[i] = xCortado[indexMinimos[i]]
+        minimos[i] = yCortado[indexMinimos[i]]
+        if i != 0: minDiff[i-1] = posMinimos[i]-posMinimos[i-1]
+    return minimos,posMinimos     
 #%% Graficas
 
 def BasicCanvas(title = "title", xlab = "xlabel", ylab = "ylabel"):

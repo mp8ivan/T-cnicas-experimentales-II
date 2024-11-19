@@ -59,7 +59,6 @@ def TTD(path):
             aux = cifra.split("\t") # Lista de números
             for i in range(len(aux)): # Voy metiendo cada uno en su lista
                 try: 
-                    print(aux[i])
                     data[i] = data[i] + [(float(aux[i]))]
                 except: # No habia dato: Se levantará error de pasar "" a float.
                     pass # Seguimos y listo
