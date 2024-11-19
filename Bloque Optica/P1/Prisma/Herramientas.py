@@ -4,16 +4,7 @@ import os
 import matplotlib.pyplot as plt
 
 #%% Trasladar data 
-"""
-Txt to Data (TTD):
-Dado un path relativo a un documento de texto con datos guardados por columnas, asocia a cada columna una lista de datos.
-Devuelve una matriz de datos en la que cada fila corresponde a un tipo de dato.
-Los datos deben estar separados por una tabulación.
 
-Dato_1.1    Dato_2.1
-Dato_2.1    Dato_2.2
-etc
-"""
 def ComasToPuntos(path):
     data = ""
     with open(path, 'r') as file:
@@ -38,12 +29,25 @@ def ComasToPuntos(path):
         
         return True
     
+"""
+Txt to Data (TTD):
+Dado un path relativo a un documento de texto con datos guardados por columnas, asocia a cada columna una lista de datos.
+Devuelve una matriz de datos en la que cada fila corresponde a un tipo de dato.
+Los datos deben estar separados por una tabulación.
+
+Dato_1.1    Dato_2.1
+Dato_2.1    Dato_2.2
+etc
+
+Ya admite comas
+"""
 def TTD(path):
     
     file = open(path, "r")
     try:
         cifra = file.readline().replace("\n","") # Leo la primera linea para inizializar la categoria de datos
-        cifra.replace(" ","") # Quito tambien los espacios 
+        cifra = cifra.replace(" ","") # Quito tambien los espacios
+        cifra = cifra.replace(",",".")
         if cifra == "": # Documento vacio
             file.close()
             print("Me has dado un documento vacio // Primea linea vacia")
@@ -55,11 +59,13 @@ def TTD(path):
             aux = cifra.split("\t") # Lista de números
             for i in range(len(aux)): # Voy metiendo cada uno en su lista
                 try: 
+                    print(aux[i])
                     data[i] = data[i] + [(float(aux[i]))]
                 except: # No habia dato: Se levantará error de pasar "" a float.
                     pass # Seguimos y listo
             cifra = file.readline().replace("\n","") # Leo la siguiente linea
-            cifra.replace(" ", "") # Quito tambien los espacios
+            cifra = cifra.replace(" ", "") # Quito tambien los espacios
+            cifra = cifra.replace(",",".")
         # Cuando haya terminado, paso cada fila a un array:
         for i in range(len(data)):
             data[i] = np.array(data[i], dtype = float)
