@@ -53,7 +53,7 @@ for i in range(len(ListP2U)):
 for i in range(len(ListP2U)):
     fig1,ax1 = herr.BasicCanvas(ListP2U[i],"U1 (V)", "I (nA)")
     ax1.plot(DataList[i][0],DataList[i][1])
-    ax1.scatter(minPos[i],minList[i])
+    ax1.scatter(minPos[i],minList[i], s = 8, color = "red")
     fig1.show()
 for i in range(len(ListP2U)):        # lo mismo para diferencias 
     fig1,ax1 = herr.BasicCanvas(ListP2U[i] + r": $\Delta U_{min}$","\Delta U_{min} (V)", "")

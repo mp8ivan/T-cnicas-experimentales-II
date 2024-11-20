@@ -31,7 +31,10 @@ U2_1 = herr.TTD(pth  + ListP2U[0])
 U2_15 = herr.TTD(pth  + ListP2U[1])
 U2_2 = herr.TTD(pth  + ListP2U[2])
 
-errV = 0.01 # V
+errV = 0.01 # V, error de medida
+errMin = 0.01 # V, error de determinacion de minimos (se ha visto con un promedio
+              # de cuanto se separan algunos minimos numericos de lo que nosotros determinariamos visualmente)
+errDiffMin = (errV + errMin) * 2 # Prop. errores. se suman y se multiplica por dos por restar dos variables con mismo error
 errI = 0.01 # nA
 #%% Buscando minimos
 
