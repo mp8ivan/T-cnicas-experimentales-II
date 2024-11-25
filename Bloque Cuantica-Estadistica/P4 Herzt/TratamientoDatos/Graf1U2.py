@@ -95,8 +95,10 @@ b = p[0]
 a = p[1]
 errb = np.sqrt(np.diag(cov))[0]
 erra = np.sqrt(np.diag(cov))[1]
+chi = sci.stats.chisquare(np.polyval(p,n), minDiffe) [1] 
 ax4.plot(n, b*n + a, color = "red", linestyle = "dashed", label = r"$\Delta U = n \cdot E_a$")
 ax4.plot(0,0,label = r"$\Delta U = n \cdot ({} \pm {}) + ({} \pm {})$".format(round(b,3),round(errb,2),round(a,2),round(erra,2)), c = "red", linestyle = "dashed")
+ax4.plot(0,0,label = r"R^2 = " + str(chi))
 ax4.legend(loc = "upper left")
 print("E_ajuste (J) =",b,"||| Ea promedio (J) =", Ea, "+-", epsiEa)
 
