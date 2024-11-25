@@ -74,18 +74,31 @@ p, cov = np.polyfit(n, minDiff[t], 1, cov = True)
 covDiag = np.sqrt(np.diag(cov))
 errm = covDiag[1]
 errn = covDiag[0]
+minDiffMean = np.mean(minDiff[t])
+minDiffstd = np.std(minDiff[t])
+print (minDiffMean,minDiffstd)
 # chi = np.sum((np.polyval(p, n) - minDiff[t])**2) # Esto por alguna razon no va
 chi = sci.stats.chisquare(np.polyval(p,n), minDiff[t]) [1] # Esto es chi cuadrado
 if toInforme:
-    fig1,ax1 = herr.BasicCanvas(r"$\Delta U (n)$ para $ T = 175^\circ$", "n",r"$\Delta U_{min}$ (eV)") ##
+    fig1,ax1 = herr.BasicCanvas(r"Distancia entre mínimos según el nivel energético $U_2 = 2 \ V$", "n",r"$\Delta U_{min}$ (eV)") ##
 else:
     fig1,ax1 = herr.BasicCanvas(ListP2U[t], "n",r"$\Delta U_{min}$ (eV)") ##r"$\Delta U (n)$ para $ T = 145^\circ$"
 ax1.scatter(n,minDiff[t], s = 8)
-ax1.plot(n, np.polyval(p, n), linestyle = "dashed", color = "red", label = r"$\Delta V = ({} \pm {}) n + ({} \pm {}) $".format(round(p[1],2), round(errm,2),round(p[0],2), round(errn,2)))
+ax1.plot(n, np.polyval(p, n), linestyle = "dashed", color = "red", label = r"$\Delta V = ({} \pm {}) n + ({} \pm {}) $".format(round(p[1],2), round(errm,2),round(p[0],3), round(errn,3)))
 ax1.plot(n[0],minDiff[t][0], label = r"R^2 = {}".format(round(chi,10)))
 ax1.errorbar(n,minDiff[t],np.ones(len(minDiff[t]))*0.04,fmt = "none", capsize = 5)
 ax1.legend()
 fig1.show()
+
+T = np.arange(145,180,5)
+Eajuste = np.array([2.44,2.435,2.445, 2.4695,2.43, 2.445,2.41])
+epsiEa = np.array([0.13,0.10,0.03,0.012,0.13,0.03,0.04])
+fig2, ax2 = herr.BasicCanvas(r"$\Delta U (1/2)$ para distintas temperaturas", "T (grados)", r"$\Delta U$")
+ax2.plot(T, np.ones(len(T))*37644.978 * 1.24 * 10**(-4), color = "red", linestyle = "dashed", label = r"$E_t = 4.668\ eV$") # del handbook de 
+ax2.scatter(T,Eajuste, s = 8)
+ax2.errorbar(T,Eajuste,epsiEa, fmt = "none", capsize = 5)
+fig2.legend()
+fig2.show()
 """
 # Finalmente, grafica de U2-U1(T)
 secMinT = np.array([4.73,4.76,4.76,4.75,4.72,4.79,4.67]) # Se calculan a mano porque es mas trabajoso el codigo con deteccion de minimos (nos ayudamos con el visualmente)
