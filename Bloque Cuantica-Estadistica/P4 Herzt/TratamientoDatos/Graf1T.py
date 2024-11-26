@@ -35,7 +35,7 @@ minPos = []
 for i in range(len(ListP2U)):
     DataList.append( herr.TTD(pth  + ListP2U[i]))
     # Buscando minimos
-    auxMin, auxPosMin = BuscadorMinimos(DataList[i], 850, 1)
+    auxMin, auxPosMin = BuscadorMinimos(DataList[i], 600, 0.1)
     minList.append(auxMin)
     minPos.append(auxPosMin)
 
@@ -66,9 +66,9 @@ for i in range(len(ListP2U)):        # lo mismo para diferencias
     ax1.scatter(np.arange(0,len(minDiff[i]),1),minDiff[i])
     fig1.show()
 """
-toInforme = True
-t = 6
-minDiff[t] = minDiff[t][2:-1]
+toInforme = False
+t = 1
+minDiff[t] = minDiff[t][:]
 n = np.arange(0,len(minDiff[t]))
 p, cov = np.polyfit(n, minDiff[t], 1, cov = True)
 covDiag = np.sqrt(np.diag(cov))
