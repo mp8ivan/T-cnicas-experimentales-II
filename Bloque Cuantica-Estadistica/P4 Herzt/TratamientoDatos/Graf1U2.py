@@ -73,7 +73,21 @@ ax3.plot(U2_2[0],U2_2[1])
 ax3.scatter(posMinU271,minU271, s = 8, color = "red")
 fig3.show()
 
+
+#%%% Umin(n)
+n = np.arange(1,len(posMinU271) +1, 1)
+p, cov = np.polyfit(n,posMinU271, 1,cov = True)
+errs = np.sqrt(np.diag(cov))
+chi = sci.stats.chisquare(np.polyval(p,n), posMinU271) [1] # Esto es chi cuadrado
+fig,ax = herr.BasicCanvas(r"Posición de los mínimos para $U_2 = 2\ V$", "n",r"$U (eV)$")
+ax.scatter(n,posMinU271,s = 8)
+lineName =  r"$U(n) = ({} \pm {})n + ({} \pm {}) $".format(round(p[0],3), round(errs[0],3),round(p[1],2),round(errs[1],2))
+ax.plot(n, np.polyval(p, n), c = "red", linestyle = "dashed", label =lineName)
+ax.plot(n[0],posMinU271[0], label = r"$R^2 = {}$".format(chi))
+ax.legend()
+fig.show()
 #%%% Un -U(n-1)
+"""
 fig4,ax4 = herr.BasicCanvas("Distancia entre mínimos según el nivel energético", "n", r"$\Delta U(n)$ (eV)")
 n = np.arange(0,len(minDiff),1)
 e = 1.6 *10 **(-19) # Carga del electron. Para tener la pendiente en julios
@@ -103,9 +117,9 @@ ax4.legend(loc = "upper left")
 print("E_ajuste (J) =",b,"||| Ea promedio (J) =", Ea, "+-", epsiEa)
 
 """
+"""
 # Vamos a meter el modelo teorico de Rubenzah
 l= # recorrido libre medio
 L= # Distancia entre catodo y rejilla
 deltaU = (1+l/L(2*n-1))*4.67 # eV
 """
-
