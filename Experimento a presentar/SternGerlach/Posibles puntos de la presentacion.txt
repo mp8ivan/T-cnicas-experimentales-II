@@ -1,0 +1,16 @@
+Enfoque de traducir la teoría a sistemas físicos (análogo de polarización de la luz)
+
+1. Llevar el significado de un ket a algo más "palpable" (un ket es un vector que recoge un espacio de fases para unas condiciones del sistema).
+El espacio de Hilbert es el espacio que recoge todos los espacios de fases para diferentes condiciones del sistema. Poner en el ejemplo del spin que cada ket vendría dado por 
+la orientación de B (m), la componente n del spin, y su espacio de fases asociado a ellas (C(m,n)). Mucho más claro en la segunda clase de Theoretical Minimun.
+
+2. Ejemplificar algunos Postulados de la Cuántica con nuestro experimento de haces de luz//sistema spin:
+	i. El conjunto de estados de un sistema cuántico forma un espacio vectorial con cuerpo en los complejos (es el punto 1 de arriba).
+	ii. Los valores posibles de un observable corresponden a los autovalores de su matriz asociada
+	iii. Los autovectores de un observable corresponden a estados donde su valor está determinado al autovalor asociado a dicho estado
+	iv.  Dado un estado general A, la probabilidad de que la variable observable se determine a un valor concreto viene dada por su coordenada en la base de autoestados 
+	     asociados al observable.
+	v. Al realizarse una medida se está cambiando el sistema a uno donde dicha variable se vuelve determinada.
+--> Modificar el experimento para incluir sendos casos del apartado v. que es el chulo (En el libro de Feynmann hay algunas ideas para ello)
+
+3. Indicar la diferencia entre estados determinados y no determinados para un observable concreto
