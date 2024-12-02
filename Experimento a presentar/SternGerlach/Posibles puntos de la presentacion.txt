@@ -14,3 +14,6 @@ la orientación de B (m), la componente n del spin, y su espacio de fases asocia
 --> Modificar el experimento para incluir sendos casos del apartado v. que es el chulo (En el libro de Feynmann hay algunas ideas para ello)
 
 3. Indicar la diferencia entre estados determinados y no determinados para un observable concreto
+
+4. Ejemplificar qué significa realizar un "cambio de base" en el Espacio de Hilbert: no es más que decidir tomar otra variable a estudiar del sistema, modificar su orientacion etc.
+Es decir, modificar la naturaleza de la medida
