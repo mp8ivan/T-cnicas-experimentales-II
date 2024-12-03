@@ -17,3 +17,14 @@ la orientación de B (m), la componente n del spin, y su espacio de fases asocia
 
 4. Ejemplificar qué significa realizar un "cambio de base" en el Espacio de Hilbert: no es más que decidir tomar otra variable a estudiar del sistema, modificar su orientacion etc.
 Es decir, modificar la naturaleza de la medida
+
+
+ESQUEMA DE LA PRESENTACIÓN (BOCETO)
+Introducción:
+Explicamos brevemente cuál es el objetivo de nuestra presentación: realizar un análogo del experimento clásico de Stern-Gerlach para justificar el modelo cuántico de estado.
+
+Fundamento teórico y resultados:
+Comentar en qué consiste el experimento clásico de Stern-Gerlach (cuál es su propósito, en qué consiste, por qué es complicado recrearlo). Compararemos dicho experimento con nuestro análogo. Después, comenzaremos con la tralla teórica. Todo esto lo haremos apoyándonos de los resultados que hayamos obtenido de nuestras mediciones.
+
+Conclusiones:
+¿Por qué es importante este experimento? ¿Qué más podríamos estudiar con este experimento? Implicaciones, etc.
