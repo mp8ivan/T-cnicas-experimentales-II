@@ -1,0 +1,141 @@
+\section{P7: Distribución de Velocidades de Maxwell-Boltzmann}
+\subsection{Objetivo}
+\begin{itemize}
+    \item Visualizar la distribución de velocidades de Maxwell-Boltzmann
+    \item Comparar el resultado con la teórica de un gas ideal
+\end{itemize}
+
+\subsection{Fundamento teórico}
+En colectividad canónica para un gas ideal podemos definir una distribución de probabilidad para el módulo de la velocidad de la forma:
+\begin{equation}
+    P(v) (dv) = C_1 v^2 e^{-C_2v^2} (dv),
+\end{equation}
+donde $C_1$ y $C_2$ son constantes a determinar. En un gas ideal en tres dimensiones \cite{reif_fundamental_1965}:
+\begin{align}
+    & C_1 = 4\pi  \left(\frac{m}{2\pi kT}\right)^\frac{3}{2} & C_2 =  \frac{m}{2kT}
+    \label{constantes teóricas}
+\end{align}
+Donde $k$ corresponde a la Constante de Boltzmann, $m$ la masa de una partícula y $T$ la temperatura del baño térmico. Recordemos que $P(v)$ representa la probabilidad de que una partícula se encuentre con velocidad $(v,v+dv)$. 
+
+Para el experimento estudiaremos las partículas con únicamente velocidad horizontal. Dada la simetría del sistema es equivalente a estudiar cualquier otra dirección. Obtendremos un histograma de velocidades a partir de la distancia horizontal que recorren al abandonar el sistema antes de llegar al suelo. Dado que será un tiro parabólico la velocidad vendrá dada por:
+
+\begin{equation}
+    v = x\sqrt{\frac{g}{2y}}
+    \label{velocidad}
+\end{equation}
+El histograma se estudiará cuantitativamente usando la regla de Laplace para determinar las probabilidades de tener cada velocidad $v$:
+\begin{equation}
+    P(v_i) = \frac{\Delta N_i}{N^e},
+\end{equation}
+donde $\Delta N_i$ correspondería al número de partículas medidas con esa velocidad $v_i$ media, y $N^e$ el número de partículas que abandonaron el sistema. Las constantes $C_1$ y $C_2$ de este modelo se pueden obtener de diversas formas:
+
+\subsubsection{Determinando C2}
+Imponemos que el máximo de la curva experimental corresponda en posición a la de la curva teórica. De esta forma
+\begin{equation}
+    C_2 = \frac{1}{v_m^2}   
+    \label{P7: Eq C2}
+\end{equation} 
+Donde $v_m$ corresponde a la velocidad donde encontramos el máximo experimentalmente.
+
+\subsubsection{Determinando C1}
+Una forma de obtener $C_1$ es imponiendo que la medida experimental $(v_m. \Delta N_m)$ esté en la curva teórica. De esta forma:
+\begin{equation}
+    C_1 = \frac{e \Delta N_m}{v^2_m \Delta v_m}
+    \label{P7: EqC1}
+\end{equation}
+Donde $\Delta v_m$ es el intervalo de velocidades que consideramos máxima. Escrita en función a la anchura de las secciones $\Delta x$:
+\begin{equation}
+    \Delta v_m = \Delta x\sqrt{\frac{g}{2y}} = 0.0783 \pm 0.008 \ \frac{m}{s} 
+\end{equation}
+
+Otra forma de obtener $C_1$ es imponer que la suma de todas las velocidades posibles dé el número $N^e$. Normalizando la función:
+\begin{equation}
+    \int_{0}^{\infty} f(v) \, dv = \frac{\sqrt{\pi}}{4} \frac{C_1}{C_2^{1.5}} = \sum_{i=1}^{N^s} \Delta N_i = N^e
+    \label{P7: normalizacion}
+\end{equation}
+
+Nos queda:
+\begin{equation}
+    C_1 = \frac{4N^e}{\sqrt{\pi}} C_2 ^\frac{3}{2} 
+    \label{P4: Eq alternativa C1}
+\end{equation}
+\subsection{Desarrollo experimental}
+Los materiales empleados fueron los siguientes:
+
+\begin{itemize}
+    \item Simulador de movimiento térmico provisto de un motor; una plataforma (que vibra accionada por el propio motor) con una burbuja de nivel; un orificio y un filtro para seleccionar las esferas con velocidad horizontal; un pistón, que permite limitar el volumen de la cámara; y una tolva de carga.
+    \item Cubeta de clasificación. Dividida en 24 sectores de anchura $d = 10 \ mm$.
+    \item Alfombrilla para aislar las vibraciones del simulador.
+    \item Reóstato con resistencia variable para modificar la frecuencia de vibración.
+    \item Estroboscopio para medir cuantitativamente dicha frecuencia de vibración.
+    \item Cronómetro.
+    \item Tubos de ensayo y esferas de vidrio.
+    \item Balanza.
+\end{itemize}
+
+\textbf{1. Preparación del simulador}
+
+En primer lugar, tras nivelar horizontalmente la plataforma del simulador, acercamos al mismo la cubeta de clasificación hasta que ambos instrumentos estuvieran en contacto (de modo que la rendija de salida del simulador quedara justamente a $80$ mm por encima del borde de los sectores de la cubeta, esto es, $y = 80$ mm). A continuación, ajustamos el pistón a una altura de $60$ mm y obturamos la salida de las esferas.
+
+Tras todo ello, introducimos cuatrocientas esferas en la cámara a través de la tolva de carga. A su vez, preparamos catorce tubos de ensayo con cuarenta y cinco esferas cada uno. Una vez iniciado el experimento, debimos vaciar un tubo por minuto (ya que $45$ esferas expulsadas por minuto era aproximadamente el ritmo al que la máquina operaba).
+
+\textbf{2. Conectar el simulador y ajustar su frecuencia}
+
+Debimos asegurarnos de ajustar la potencia del reóstato de tal forma que el estroboscopio marcara unas $3000$ rpm. Para ello, seleccionamos inicialmente esta marca en el estroboscopio; después, iluminamos el fondo de la cámara; y, finalmente, fuimos aumentando levemente las revoluciones del motor moviendo el cursor del reóstato hasta que la plataforma pareciera permanecer en reposo (o se moviera muy lentamente).
+
+\textbf{3. Realización del experimento}
+
+En el último paso, abrimos al obturador a la vez que pusimos en marcha el cronómetro. A intervalos de un minuto, introdujimos en la cámara $45$ esferas de las antes preparadas. La duración del experimento fue de alrededor de un cuarto de hora.
+
+\subsection{Resultados}
+
+En cuanto al análisis de resultados que requería la práctica, primeramente llevamos a cabo una \textbf{cuantificazión y representación gráfica de los resultados experimentales}. Para ello, realizamos una tabla de valores en las que incluimos el número de esferas de vidrio $\varDelta N_i$ que encontramos en cada compartimento, el número de compartimento $i$ correspondiente (con $i = 1,2,3,...,N^s$, siendo $N^s = 24$ sectores o compartimentos) y la velocidad media $v_i$ que llevaban las esferas (calculada mediante la fórmula \ref{velocidad}). Una vez hechas las medidas, quedaba simplemente representar $\varDelta N_i$ frente a $v_i$.
+
+Seguidamente, elaboramos una \textbf{representación de la curva de distribución teórica y comparación con la curva experimental}. Para ello, fue necesario calcular los valores de los coeficientes $C_1$ y $C_2$ (expuestos en el fundamento teórico), puesto que dicha distribución teórica viene dada por:
+\begin{equation}
+    f(v) = C_1 v^2 e^{-C_2v^2}
+\end{equation}
+
+En nuestro experimento, los valores para los coeficientes resultaron ser:
+\begin{equation}
+    C_2 = \frac{1}{0,313^2} = 10,207 \text{ s}^2 \text{/m}
+\end{equation}
+\begin{equation}
+    C_1 = \frac{e \cdot 90}{0,313^2 \cdot 0,783} = 37386,5813\ \text{s}^2 \text{/m}
+\end{equation}
+
+Una vez vista la gráfica de esta curva teórica, comprobamos que -en efecto- coincidía con la forma que presentaba nuestra analogía experimental.
+
+\subsection{Cuestiones}
+
+\textbf{Primera cuestión: comparación de las constantes $C_1$ y $C_2$ con su valor teórico.} Las expresiones teóricas para los coeficientes $C_1$ y $C_2$, vistas en la expresión \ref{constantes teóricas}, resultan distar considerablemente de los valores obtenidos en el experimento:
+\begin{align}
+    & C_1 =  & C_1 = 
+\end{align}
+\begin{align}
+    & C_{1(exp)} =  & C_{2(exp)} = 
+\end{align}
+
+Esto nos obliga a comentar distintas fuentes de error que podrían ser las causantes de estas diferencias. Por ejemplo, en un sistema ideal, el número de esferas vibrando sería el mismo constantemente. Sin embargo, en nuestro experimento, no era así. A pesar de que hemos tratado de paliar esto añadiendo 45 esferas por minuto, nada nos asegura que el número total de partículas oscilando fuera uniforme (pues algunas se escapaban por el orificio del aparato, además de que no hemos añadido exactamente 400 bolitas al haber optado por calcularlas a partir de una regla de tres).
+
+\textbf{Segunda cuestión: número total de esferas en función de la expresión de $C_1$.} A partir de la ecuación \ref{P7: normalizacion}, hemos visto que podemos conocer qué valor debe presentar $C_1$ para que la distribución teórica nos dé el número total de partículas. Sin embargo, si empleamos la expresión \ref{P7: EqC1} en dicha distribución, no obtenemos la misma cantidad de esferas. Concretamente, en nuestro experimento, usamos un total de $N^e_{exp} = 508$ esferas; mientras que el cálculo de la integral \ref{P7: normalizacion} para un valor de $C_1$ dado por \ref{P7: EqC1} nos arroja un total de $N^e = 433$ esferas.\footnote{Para el cálculo de la integral hemos usado \textit{quad} de la librería \textit{scipy} en el script \textit{Maxwell.py}.}
+
+Debemos tener en cuenta que la expresión \ref{P7: normalizacion} tiene un cuenta un sistema de gas ideal encerrado en cuatro paredes en el que los choques entre partículas y la interacción de estas con las paredes del recipiente son colisiones elásticas. Esto no se cumple del todo en nuestra analogía, pues puede llegar a existir cierta pérdida de energía cinética en forma de calor (debido a la fricción generada en los choques). Además, las paredes del recipiente donde vibran las esferas no son exactamente lisas, sino que presentan irregularidades (como una superficie ligeramente rugosa).
+
+\subsection{Cuaderno de bitácora}
+
+Sobre el conteo de canicas: Hemos tomado dos masas: la de 100 canicas y la de 45. La de 45 es para preparar los viales de reposición, y las de 100 para extrapolar a 400. Para 45 canicas tenemos una masa de $0.6 \ g$. Para 100 era $d$. 
+
+En la primera medida se ha soltado la pestaña de salida de las canicas estaba suelta y salían por donde no debían. Paramos, arreglamos el sistema y recontamos. Para eliminar las canicas del sistema las vertemos por donde deberían salir de vuelta al vaso. 
+
+En el segundo intento la pestaña estaba cerrada (se había cerrado cuando giramos el sistema). Lo arreglamos y comenzamos a medir
+
+Hemos pensado que un buen extra para esta práctica sería realizar el experimento con esferas de distintas masa (quizá de metal) o variando la temperatura del sistema para analizar los cambios.
+
+Otro extra seria determinar la constante de Boltzmann determinando graficando E(T) (E se determinaria con $<v^2>$)
+
+En las medidas el reostato de vez en cuando cambiaba la frecuencia durante un rato (quizás 10-15 s). Posible fuente de error.
+
+Para contar las bolitas una vez finalizado el experimento hemos bloqueado la salida del contador. Tras ello, hemos colocado el recipiente a $90^\circ$ para tener las canicas en horizontal y hemos sacado una foto con flash y una hoja de papel detrás. De esta forma las canicas se distinguían mejor entre sí y ha agilizado el conteo.
+
+Nos hemos dado cuenta al terminar las medidas que hubiese sido pertinente contar también el número de canicas que, si bien abandonaron el sistema, tampoco acabaron en ningún contador. Si bien no se tendrían en cuenta para el cálculo de la probabilidad podría haber sido un indicador de error de cara a cuántas partículas había en el agitador en cada momento.
