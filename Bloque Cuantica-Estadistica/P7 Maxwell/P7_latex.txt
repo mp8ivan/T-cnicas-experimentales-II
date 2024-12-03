@@ -122,6 +122,8 @@ Esto nos obliga a comentar distintas fuentes de error que podrían ser las causa
 
 Debemos tener en cuenta que la expresión \ref{P7: normalizacion} tiene un cuenta un sistema de gas ideal encerrado en cuatro paredes en el que los choques entre partículas y la interacción de estas con las paredes del recipiente son colisiones elásticas. Esto no se cumple del todo en nuestra analogía, pues puede llegar a existir cierta pérdida de energía cinética en forma de calor (debido a la fricción generada en los choques). Además, las paredes del recipiente donde vibran las esferas no son exactamente lisas, sino que presentan irregularidades (como una superficie ligeramente rugosa).
 
+También cabría tener en cuenta que las moléculas estarían sometidas únicamente a fuerzas de colisión en un gas ideal, mientras que en el experimento las bolitas están afectadas por las vibraciones mecánicas (que no necesariamente reproducen un movimiento térmico puramente aleatorio).
+
 \subsection{Cuaderno de bitácora}
 
 Sobre el conteo de canicas: Hemos tomado dos masas: la de 100 canicas y la de 45. La de 45 es para preparar los viales de reposición, y las de 100 para extrapolar a 400. Para 45 canicas tenemos una masa de $0.6 \ g$. Para 100 era $d$. 
