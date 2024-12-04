@@ -1,5 +1,3 @@
 https://www.fisicacuantica.es/momento-angular-de-espin/
-https://web.archive.org/web/20070929091315/http://www.physicstoday.org/vol-56/iss-12/p53.html
-http://www.sc.ehu.es/sbweb/fisica/estadistica/sternGerlach/sternGerlach.html
-
+https://www.fisicacuantica.es/experimento_stern-gerlach/
 https://www.frontiersin.org/journals/quantum-science-and-technology/articles/10.3389/frqst.2024.1451239/full    Un experimento con luz de estados entrelazados
