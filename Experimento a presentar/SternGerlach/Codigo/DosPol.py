@@ -51,8 +51,10 @@ Imin1 = np.min(I1)
 Imax2 = np.max(I2)
 Imin2 = np.min(I2)
 
-I1P =I1/Imax1
-I2P = I2/Imax2
+I1N = I1/I1SinP
+I2N = I2/I2SinP
+errI1N = np.ones(len(I1N)) * np.sqrt((errI/I1N)**2 + (errI/I1SinP)**2) * I1N
+errI2N = np.ones(len(I2N)) * np.sqrt((errI/I2N)**2 + (errI/I2SinP)**2) * I2N
 #%% Graficos
 fig, ax = herr.BasicCanvas("Intento1", r"$\alpha$ (grados)", r"$I\ (\mu A)$")
 ax.scatter(A1,I1, s = 8)
@@ -65,4 +67,12 @@ ax2.errorbar(A2,I2, errI2,errA2, fmt = "none", capsize = 5)
 fig.show()
 
 # Figuras cociente
-f3,ax3 = herr.BasicCanvas()
+f3,ax3 = herr.BasicCanvas(r"Cociente $\frac{I}{I_0}$", r"$\alpha$ (grados)", r"$I/I_0$")
+ax3.scatter(A1,I1N, s = 8)
+ax3.errorbar(A1,I1N, errI1N, fmt = "none", capsize = 5)
+f3.show()
+
+f4,ax4 = herr.BasicCanvas(r"Cociente $\frac{I}{I_0}$ (2)", r"$\alpha$ (grados)", r"$I/I_0$")
+ax4.scatter(A2,I2N, s = 8)
+ax4.errorbar(A2,I2N, errI2N, fmt = "none", capsize = 5)
+f4.show()
