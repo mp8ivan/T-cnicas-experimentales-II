@@ -46,6 +46,7 @@ I60N = I60/I60Sin
 errI0N = np.ones(len(I0N)) * np.sqrt((errI/I0N)**2 + (errI/I0Sin)**2) * I0N
 errI30N = np.ones(len(I0N)) * np.sqrt((errI/I30N)**2 + (errI/I30Sin)**2) *I30N 
 errI60N = np.ones(len(I0N)) * np.sqrt((errI/I60N)**2 + (errI/I60Sin)**2) * I60N
+
 #%% Plots
 
 f1,ax1 = herr.BasicCanvas(r"$\alpha = 0 ^\circ$", r"$\alpha$ (grados)", "I (mA)")
@@ -72,10 +73,10 @@ ax4.legend()
 fig4.show()
 
 
-f5,ax5 = herr.BasicCanvas(r"$\alpha = 0 ^\circ$ (normalizado)", r"$\alpha$ (grados)", "I/IP1")
-f6,ax6 = herr.BasicCanvas(r"$\alpha = 30 ^\circ$ (normalizado)", r"$\alpha$ (grados)", "I/IP1 (mA)")
-f7,ax7 = herr.BasicCanvas(r"$\alpha = 60 ^\circ$ (normalizado)", r"$\alpha$ (grados)", "I/IP1 (mA)")
-f8,ax8 = herr.BasicCanvas("Superposición de los tres ángulos (normalizado)",r"$\alpha$ (grados)", "I/IP1 (mA)")
+f5,ax5 = herr.BasicCanvas(r"$\alpha = 0 ^\circ$ (normalizado)", r"$\alpha$ (grados)", r"$I /I_{P1}$")
+f6,ax6 = herr.BasicCanvas(r"$\alpha = 30 ^\circ$ (normalizado)", r"$\alpha$ (grados)", r"$I /I_{P1}$")
+f7,ax7 = herr.BasicCanvas(r"$\alpha = 60 ^\circ$ (normalizado)", r"$\alpha$ (grados)", r"$I /I_{P1}$")
+f8,ax8 = herr.BasicCanvas("Superposición de los tres ángulos (normalizado)",r"$\alpha$ (grados)", r"$I /I_{P1}$")
 
 ax5.scatter(A0,I0N, s = 8)
 ax6.scatter(A30,I30N, s = 8)
@@ -89,6 +90,9 @@ ax5.errorbar(A0,I0N,errI0N, fmt = "none", capsize = 5) # Quito los errores de Al
 ax6.errorbar(A30,I30N,errI30N, fmt = "none", capsize = 5)
 ax7.errorbar(A60,I60N,errI60N, fmt = "none", capsize = 5)
 
+ax8.errorbar(A0,I0N,errI0N, fmt = "none", capsize = 3, color = "blue") # Quito los errores de Alfa porque solo emborronan
+ax8.errorbar(A30,I30N,errI30N, fmt = "none", capsize = 3, color = "orange")
+ax8.errorbar(A60,I60N,errI60N, fmt = "none", capsize = 3, color = "green")
 ax8.legend()
 
 f5.show()

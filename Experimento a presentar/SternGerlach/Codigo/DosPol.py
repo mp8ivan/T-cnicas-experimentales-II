@@ -46,9 +46,13 @@ I1SinP = PasoAIntensidad(12.84)
 I2SinP = PasoAIntensidad(12.93)
 
 Imax1 = np.max(I1)
-Imin1 = np.max(I2)
+Imin1 = np.min(I1)
 
+Imax2 = np.max(I2)
+Imin2 = np.min(I2)
 
+I1P =I1/Imax1
+I2P = I2/Imax2
 #%% Graficos
 fig, ax = herr.BasicCanvas("Intento1", r"$\alpha$ (grados)", r"$I\ (\mu A)$")
 ax.scatter(A1,I1, s = 8)
@@ -59,3 +63,6 @@ fig2, ax2 = herr.BasicCanvas("Intento2", r"$\alpha$ (grados)", r"$I\ (\mu A)$")
 ax2.scatter(A2,I2, s = 8)
 ax2.errorbar(A2,I2, errI2,errA2, fmt = "none", capsize = 5)
 fig.show()
+
+# Figuras cociente
+f3,ax3 = herr.BasicCanvas()
