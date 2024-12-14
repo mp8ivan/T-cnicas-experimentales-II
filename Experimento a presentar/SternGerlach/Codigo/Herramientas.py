@@ -44,10 +44,6 @@ Ya admite comas
 def TTD(path):
     
     file = open(path, "r")
-    # Para la P4 tecnicas II
-    file.readline()
-    file.readline()
-    file.readline()
     try:
         cifra = file.readline().replace("\n","") # Leo la primera linea para inizializar la categoria de datos
         cifra = cifra.replace(" ","") # Quito tambien los espacios

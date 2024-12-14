@@ -2,7 +2,7 @@
 import Herramientas as herr
 import numpy as np
 import matplotlib.pyplot as plt
-
+plt.rcParams.update({'font.size': 22})
 """
 Analisis de los datos para solo dos polarizadores
 
@@ -61,6 +61,7 @@ ax.scatter(A1,I1, s = 8)
 ax.errorbar(A1,I1, errI1,errA1, fmt = "none", capsize = 5)
 fig.show()
 
+
 fig2, ax2 = herr.BasicCanvas("Intento2", r"$\alpha$ (grados)", r"$I\ (\mu A)$")
 ax2.scatter(A2,I2, s = 8)
 ax2.errorbar(A2,I2, errI2,errA2, fmt = "none", capsize = 5)
@@ -69,10 +70,12 @@ fig.show()
 # Figuras cociente
 f3,ax3 = herr.BasicCanvas(r"Cociente $\frac{I}{I_0}$", r"$\alpha$ (grados)", r"$I/I_0$")
 ax3.scatter(A1,I1N, s = 8)
-ax3.errorbar(A1,I1N, errI1N, fmt = "none", capsize = 5)
+ax3.errorbar(A1,I1N, errI1N, errA1, fmt = "none", capsize = 3)
 f3.show()
 
-f4,ax4 = herr.BasicCanvas(r"Cociente $\frac{I}{I_0}$ (2)", r"$\alpha$ (grados)", r"$I/I_0$")
-ax4.scatter(A2,I2N, s = 8)
-ax4.errorbar(A2,I2N, errI2N, fmt = "none", capsize = 5)
+f4,ax4 = herr.BasicCanvas(r"Cociente $\frac{I}{I_0}$ ($2^{da}$ medida)", r"$\alpha$ (grados)", r"$I/I_0$")
+ax4.scatter(A2,I2N, s = 10)
+ax4.errorbar(A2,I2N, errI2N, errA2, fmt = "none", capsize = 3)
+ax4.plot(0,0.6, lw = 0, label = r"$I_0 = 12.84 \pm 0.01 \ \mu A$")
+ax4.legend()
 f4.show()
