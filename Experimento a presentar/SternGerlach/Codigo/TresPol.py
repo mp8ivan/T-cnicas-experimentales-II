@@ -25,7 +25,7 @@ V0 = np.array(Data0[1], dtype = float)
 I0 = PasoAIntensidad(V0)
 
 A30 = np.array(Data30[0], dtype = float)
-V30 = np.array(Data30[1], dtype = float)
+V30 = np.array(Data30[1], dtype = float) 
 I30 = PasoAIntensidad(V30)
 
 A60 = np.array(Data60[0],dtype = float)
