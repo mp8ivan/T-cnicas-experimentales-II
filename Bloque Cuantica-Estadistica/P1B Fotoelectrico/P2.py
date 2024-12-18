@@ -14,19 +14,25 @@ pth = "Data/Parte 2/"
 dataNames = np.array(os.listdir(pth))
 dataList = []
 for i in range(6):
-    dataList.append(herr.TTD(pth +dataNames[i])) # Se han conseguido en orden de alfa creciente
+    dataList.append(np.array(herr.TTD(pth +dataNames[i]),dtype = float)) # Se han conseguido en orden de alfa creciente
 #%% Ajustes
 # Hay que obtener I a partir de la V medida de la corriente
-"""
-nu = np.array(finalPuntos[0], dtype = float)
-V = np.array(finalPuntos[1], dtype = float)
-p, cov = np.polyfit(nu, V, 1, cov = True)
-errs = np.sqrt(np.diag(cov))
-chi = scis.chisquare(np.polyval(p,nu), V) [1] # Esto es chi cuadrado
-"""
+
+
+
+
 # Hay que obtener los errores
 #%% Graficas
 for i in range(6):
-    fig,ax = herr.BasicCanvas(dataNames[i], "V (V)", "I (nA)")
-    ax.scatter(dataList[i][0], dataList[i][1], s = 8)
+    V = dataList[i][0]
+    I = dataList[i][1]  # * 10E-9 # Revertimos amplificacion y dividimos por R. Al estar en nanos esta listo
+    p, cov = np.polyfit(V, I, 1, cov = True)
+    chi = scis.chisquare(np.polyval(p,V), I) [1] # Esto es chi cuadrado
+    errs = np.sqrt(np.diag(cov))
+    ajusteLabel = r"$I(V) =({} \pm {} ) I + ({} \pm {}) $".format(round(p[0]), round(errs[0]),round(p[1]), round(errs[1]))
+    fig,ax = herr.BasicCanvas(dataNames[i][:-4], "V (V)", "I (nA)")
+    ax.scatter(dataList[i][0], dataList[i][1], s = 10)
+    ax.plot(V, np.polyval(p, V), color = "red", linestyle = "dashed", label = ajusteLabel)
+    ax.plot(V[0],I[0], linewidth = 0, label = r"$R^2 = {}$".format(round(chi,5)))
+    ax.legend()
     fig.show()

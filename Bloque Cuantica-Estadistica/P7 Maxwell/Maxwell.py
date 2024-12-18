@@ -11,10 +11,11 @@ plt.close("all")
 y = 0.08 # m
 g = 9.81 # m/s^2
 d = 0.01 # m. Abertura de las celdas
+multiplier = 1E-4 # Para que haya mas detalle en las gracias
 kT = 6.5313E-4 # Obtenido de vm = sqrt(2kT/m)
 
 N = 508
-x = np.arange(0.01,0.24,d)
+x = np.arange(0.01,0.24,d*multiplier) # Suponemos que las bolitas salen 
 v = x*np.sqrt(g/(2*y))
 vm = 0.313
 m = 0.6/45
