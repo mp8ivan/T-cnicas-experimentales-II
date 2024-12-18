@@ -1,0 +1,4 @@
+1. Probar el analogo para operadores
+2. Medir la intensidad incidente sin polarizador
+3. Sacar foto a los distintos sistemas posibles (lamina; lamina + P1, lamina + P2, L1+ P1+ L2 + P2)
+4. Preguntar a María donde vamos a hacer la presentación (habrá pizarra?)
