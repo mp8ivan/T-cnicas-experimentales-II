@@ -27,6 +27,7 @@ chi = scis.chisquare(np.polyval(p,nu), V) [1] # Esto es chi cuadrado
 
 
 #%% Graficas
+plt.rcParams.update({'font.size': 22})
 fig,ax = herr.BasicCanvas("Potecial de frenado para distintas frecuencias", r"$\nu \ (Hz)$", "V (Volts)")
 ax.scatter(nu,V,s = 8)
 ajusteLabel = r"$V(\nu) =({} \pm {} ) \nu + ({} \pm {}) $".format(round(p[0],17), round(errs[0],17),round(p[1],2), round(errs[1],2))

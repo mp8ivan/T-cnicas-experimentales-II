@@ -23,6 +23,7 @@ for i in range(6):
 
 # Hay que obtener los errores
 #%% Graficas
+plt.rcParams.update({'font.size': 15})
 for i in range(6):
     V = dataList[i][0]
     I = dataList[i][1]  # * 10E-9 # Revertimos amplificacion y dividimos por R. Al estar en nanos esta listo

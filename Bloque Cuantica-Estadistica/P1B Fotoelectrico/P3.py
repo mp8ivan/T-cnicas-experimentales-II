@@ -17,6 +17,7 @@ for i in range(3):
     dataList.append(np.array(herr.TTD(pth + dataNames[i]),dtype = float)) # Se han conseguido en orden de alfa creciente
 
 #%% Graficas
+plt.rcParams.update({'font.size': 15})
 for i in range(6):
     V = dataList[i][0]
     I = dataList[i][1]
