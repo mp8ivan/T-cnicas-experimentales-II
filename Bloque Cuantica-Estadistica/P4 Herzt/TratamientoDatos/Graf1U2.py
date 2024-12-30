@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import Herramientas as herr
 import os as os
 import scipy as sci
+plt.rcParams.update({'font.size': 15})
 """
 Parte A: HG VARIANDO UH
 """
@@ -27,63 +28,67 @@ plt.close("all")
 #%%% Parte 1.1: Determinar delta U1 para distintos U2
 pth = "P1/U/"
 ListP2U = np.array(os.listdir(pth))
-U2_1 = herr.TTD(pth  + ListP2U[0])
-U2_15 = herr.TTD(pth  + ListP2U[1])
+U2_15 = herr.TTD(pth  + ListP2U[0])
+U2_1 = herr.TTD(pth  + ListP2U[1])
 U2_2 = herr.TTD(pth  + ListP2U[2])
 
 errV = 0.01 # V, error de medida
-errMin = 0.01 # V, error de determinacion de minimos (se ha visto con un promedio
+errMin = 0.005 # V, error de determinacion de minimos (se ha visto con un promedio
               # de cuanto se separan algunos minimos numericos de lo que nosotros determinariamos visualmente)
 errI = 0.01 # nA
 #%% Buscando minimos
+# Suavizado
+window_length = 50
+polyorder = 1
+U2_1[1] = herr.savgol_filter(U2_1[1], window_length, polyorder)
+U2_15[1] = herr.savgol_filter(U2_15[1], window_length, polyorder)
+U2_2[1] = herr.savgol_filter(U2_2[1], window_length, polyorder)
 
-minU265, posMinU265 = BuscadorMinimos(U2_1, 1000, 0) 
-minU268, posMinU268 = BuscadorMinimos(U2_15,1000, 0)
-minU271, posMinU271 = BuscadorMinimos(U2_2, 1000, 0.1) 
+minU21, posMinU21, diffMin1 = herr.BuscadorMinimos(U2_1, minimun_height = (-50,-0.5)) 
+minU215, posMinU215,diffMin15 = herr.BuscadorMinimos(U2_15, minimun_height = (-50,-0.5))
+minU22, posMinU22,diffMin2 = herr.BuscadorMinimos(U2_2, minimun_height=(-50,-0.5)) 
 
-
-# Diferencia de minimos apra U2 = 2
-minDiff = np.zeros(len(minU271)-1)
-for i in range(0,len(minU271)-1): # Aqui  podriamos ir quitando minimos
-    minDiff[i] = minU271[i+1]-minU271[i]
-errDiffMin = np.ones(len(minDiff))*(errV + errMin) * 2 # Prop. errores. se suman y se multiplica por dos por restar dos variables con mismo error
-
+# Diferencia Minimos para U2 = 2 V
+errDiffMin = np.ones(len(diffMin2))*(errV + errMin) * 2 # Prop. errores. se suman y se multiplica por dos por restar dos variables con mismo error
 # Obtenemos tambien la diferencia promedio (Ea)
-Ea = np.mean(minDiff[1:-1])
-epsiEa = np.std(minDiff[1:-1])
+Ea = np.mean(diffMin2[1:-1])
+epsiEa = np.sqrt(np.std(diffMin2[1:-1])**2 + np.mean(errDiffMin)**2)
+print("Energia de salto promedio: {} +- {}".format(Ea,epsiEa))
+
 #%% Calculo de errores
 
 #%% Graficas
-#%%% U265
-fig1,ax1 = herr.BasicCanvas(ListP2U[0],"U1 (V)", "I (nA)")
-ax1.plot(U2_1[0],U2_1[1])
-ax1.scatter(posMinU265,minU265, s= 8, color = "red")
+#%%% U265 # r"$U_2 = 1\ V$"
+fig1,ax1 = herr.BasicCanvas(r"$U_2 = 1.5\ V$","U1 (V)", "I (nA)")
+ax1.plot(U2_15[0],U2_15[1])
+ax1.scatter(posMinU215,minU215, s= 8, color = "red")
 fig1.show()
 
 
 #%%% U268
-fig2,ax2 = herr.BasicCanvas(ListP2U[1],"U1 (V)", "I (nA)")
-ax2.plot(U2_15[0],U2_15[1])
-ax2.scatter(posMinU268,minU268, s = 8, color = "red")
+fig2,ax2 = herr.BasicCanvas(r"$U_2 = 1\ V$","U1 (V)", "I (nA)")
+ax2.plot(U2_1[0],U2_1[1])
+ax2.scatter(posMinU21,minU21, s = 8, color = "red")
 fig2.show()
 
 #%%% U271
-fig3,ax3 = herr.BasicCanvas(ListP2U[2],"U1 (V)", "Intensidad (nA)")
+fig3,ax3 = herr.BasicCanvas(r"$U_2 = 2\ V$","U1 (V)", "Intensidad (nA)")
 ax3.plot(U2_2[0],U2_2[1])
-ax3.scatter(posMinU271,minU271, s = 8, color = "red")
+ax3.scatter(posMinU22,minU22, s = 8, color = "red")
 fig3.show()
 
 
 #%%% Umin(n)
-n = np.arange(1,len(posMinU271) +1, 1)
-p, cov = np.polyfit(n,posMinU271, 1,cov = True)
+n = np.arange(1,len(posMinU22)+1, 1)
+p, cov = np.polyfit(n,posMinU22, 1,cov = True)
 errs = np.sqrt(np.diag(cov))
-chi = sci.stats.chisquare(np.polyval(p,n), posMinU271) [1] # Esto es chi cuadrado
+chi = sci.stats.chisquare(np.polyval(p,n), posMinU22) [1] # Esto es chi cuadrado
 fig,ax = herr.BasicCanvas(r"Posición de los mínimos para $U_2 = 2\ V$", "n",r"$U (eV)$")
-ax.scatter(n,posMinU271,s = 8)
-lineName =  r"$U(n) = ({} \pm {})n + ({} \pm {}) $".format(round(p[0],3), round(errs[0],3),round(p[1],2),round(errs[1],2))
+ax.scatter(n,posMinU22,s = 15)
+ax.errorbar(n,posMinU22,errMin, fmt = "none", capsize = 12)
+lineName =  r"$U(n) = ({} \pm {})n + ({} \pm {}) $".format(round(p[0],2), round(errs[0],3),round(p[1],2),round(errs[1],2))
 ax.plot(n, np.polyval(p, n), c = "red", linestyle = "dashed", label =lineName)
-ax.plot(n[0],posMinU271[0], label = r"$R^2 = {}$".format(chi))
+ax.plot(n[0],posMinU22[0], label = r"$R^2 = {}$".format(round(chi,5)))
 ax.legend()
 fig.show()
 #%%% Un -U(n-1)

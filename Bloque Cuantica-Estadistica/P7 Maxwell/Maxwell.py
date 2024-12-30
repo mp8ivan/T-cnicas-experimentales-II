@@ -25,16 +25,17 @@ Dvm = np.sqrt(g/(2*y)) * 0.01 # 0.01 es el delta x
 C1 = 4*np.pi*(m/(2*np.pi*kT))**(3/2)
 C2 = m/(2*kT)
 
-C1exp = 4/np.sqrt(np.pi)*N/vm**3 # La que hace que coincida el maximo
-C1exp2 =  DN* np.exp(1)/(vm**2*Dvm)
+C1exp = N*4/np.sqrt(np.pi)/vm**3 # La que hace que coincida el maximo # Si eliminamos N coinciden exacto (la normalizamos a 1)
+#C1exp =  DN* np.exp(1)/(vm**2*Dvm) # La que hace que este normalizada (se supone)
 C2exp = 1/vm**2
 
 fig, ax = herr.BasicCanvas("Distribucion Maxwell kT = {} J; m = {} g".format(kT, round(m,4)), "v (m/s)", "P(v)")
 ax.plot(v, Maxwell(v,C1,C2), color = "red", linestyle = "dashed")
-#ax.plot(v, Maxwell(v,C1exp2,C2exp))
+ax.plot(v, Maxwell(v,C1exp,C2exp))
 fig.show()
 
 
 #%% Calculando al integral con C1exp y viendo que no da Ne
-Int, err = scint.quad(Maxwell,0,np.inf,args= (C1exp2,C2exp))
+Int, err = scint.quad(Maxwell,0,np.inf,args= (C1exp,C2exp))
+print(Int)
 

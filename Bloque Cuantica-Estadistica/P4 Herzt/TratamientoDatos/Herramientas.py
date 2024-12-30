@@ -45,9 +45,6 @@ def TTD(path):
     
     file = open(path, "r")
     # Para la P4 tecnicas II
-    file.readline()
-    file.readline()
-    file.readline()
     try:
         cifra = file.readline().replace("\n","") # Leo la primera linea para inizializar la categoria de datos
         cifra = cifra.replace(" ","") # Quito tambien los espacios
@@ -79,6 +76,7 @@ def TTD(path):
     # Cuando he terminado, cierro el fichero y devuelvo data
     file.close()    
     return np.array(data, dtype = object)
+
 #%%%
 """
 Data To Txt (DTT):
@@ -152,13 +150,16 @@ def errA (data):
 
 #%% Otros tratamientos de datos
 
-def BuscadorMinimos(data, startIndex = 0, required_width = 0):
-
+def BuscadorMinimos(data,startIndex = 0, endIndex = -1, required_width = 0, minimun_height = None ):
+    if endIndex == 0: endIndex = len(data)
     #------------------
-    yCortado = data[1][startIndex:]
-    xCortado = data[0][startIndex:]
+    yCortado = data[1][startIndex:endIndex]
+    xCortado = data[0][startIndex:endIndex]
 
-    indexMinimos = sci.signal.find_peaks(-yCortado,distance = 120,width = required_width)[0]
+    indexMinimos = sci.signal.find_peaks(-yCortado,height=minimun_height,distance = 120,
+                                         width = required_width)[0] # Nota: Height viene dado desde el 0
+    if len(indexMinimos) == 0: 
+        return None,None,None # No hay minimos
     minimos = np.zeros(len(indexMinimos))
     minDiff = np.zeros(len(indexMinimos)-1)
     posMinimos = np.zeros(len(indexMinimos))
@@ -166,7 +167,46 @@ def BuscadorMinimos(data, startIndex = 0, required_width = 0):
         posMinimos[i] = xCortado[indexMinimos[i]]
         minimos[i] = yCortado[indexMinimos[i]]
         if i != 0: minDiff[i-1] = posMinimos[i]-posMinimos[i-1]
-    return minimos,posMinimos     
+    return minimos,posMinimos,minDiff
+
+# %%% Ajuste lineal
+def ajustar_con_polyfit(X, y): # Aporte Antonio
+    # Ajustar los datos usando polyfit (grado 1 para una línea recta)
+    coef, residuals, rank, singular_values, rcond = np.polyfit(X, y, 1, full=True)
+ 
+    # Calcular los valores ajustados (predicciones)
+    y_pred = np.polyval(coef, X)
+    
+    # Usamos el residuals para obtener el error estándar
+    residual_sum_of_squares = residuals[0]
+    error = np.sqrt(residual_sum_of_squares / (len(X) - 2)) / np.std(X)
+    
+    # Mostrar los resultados   
+    print(f"Coeficiente (pendiente): {coef[0]}, {error}")
+
+    # Graficar los resultados
+    plt.scatter(X, y, color='blue', label='Datos reales')
+    plt.plot(X, y_pred, color='red', label='Ajuste lineal')
+    plt.legend()
+    plt.xlabel('n')
+    plt.ylabel('$U_1$')
+    plt.title('Ajuste de Regresión Lineal con polyfit')
+    plt.show()
+
+    return coef, error
+
+# %%% Suavizar
+
+from scipy.signal import savgol_filter
+
+def suavizar_savgol(y, window_length, polyorder): #Savitzky-Golay # Apote Antonio
+    """
+    Suavizado usando filtro de Savitzky-Golay
+    y: Array de puntos a suavizar
+    window_length: Cuanto suavizado imponemos
+    polyorder: A que polinomio de grado queremos suavizarlo
+    """
+    return savgol_filter(y, window_length=window_length, polyorder=polyorder)
 #%% Graficas
 
 def BasicCanvas(title = "title", xlab = "xlabel", ylab = "ylabel"):
@@ -182,3 +222,4 @@ def BasicCanvas(title = "title", xlab = "xlabel", ylab = "ylabel"):
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
     return fig,ax
+

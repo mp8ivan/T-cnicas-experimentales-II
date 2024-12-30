@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['Graf1T.py', 'Graf1U2.py', 'Herramientas.py', 'Graf2U2.py', 'Graf2U3.py', 'Graf2UH.py', '..\\..\\..\\Bloque Optica\\P6\\P6Data.py']
+recent_files = ['Graf2U2.py', 'Graf2U3.py', 'Graf2UH.py', 'Herramientas.py', 'ComparacionBibliografia.py']
 
 [main]
 version = 0.2.0
